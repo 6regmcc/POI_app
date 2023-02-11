@@ -1,26 +1,25 @@
 {
-  "name": "poi_app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "playtime",
+  "version": "0.1.0",
+  "description": "Playtime: a Hapi/node application for managing Playlists",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/6regmcc/POI_app.git"
+    "start": "node src/server.js",
+    "lint": "./node_modules/.bin/eslint . --ext .js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/6regmcc/POI_app/issues"
-  },
-  "homepage": "https://github.com/6regmcc/POI_app#readme",
   "devDependencies": {
-    "eslint": "^8.34.0",
+    "eslint": "8.22.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.27.5",
-    "prettier": "^2.8.4"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.1.0",
+    "@hapi/vision": "^7.0.0",
+    "handlebars": "^4.7.7"
   }
 }
