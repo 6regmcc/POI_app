@@ -1,6 +1,24 @@
-<form action="/dashboard/addpoi" method="POST">
+<form action="/dashboard/create/addpoi" method="POST">
   <div class="field">
     <label class="label">Point of Interest Name</label> <input class="input" type="text" placeholder="Enter point of interest name" name="name">
   </div>
+  <div class="select">
+    <select name="category">
+      <option>Hike trail head</option>
+      <option>Monument</option>
+      <option>Parking</option>
+      <option>Mountain Biking</option>
+      <option>Accommodation</option>
+      <option>Transport</option>
+      <option>Other</option>
+    </select>
+  </div>
+  <div class="field">
+    <label class="label">Description</label> <input class="input" type="text" placeholder="test" name="Description">
+  </div>
+  <div class="field">
+    <label class="label">Location</label> <input class="input" type="text" placeholder="test" name="Location">
+  </div>
+
   <button class="button is-link">Add Point of Interest</button>
 </form>
