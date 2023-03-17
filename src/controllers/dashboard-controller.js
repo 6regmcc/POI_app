@@ -26,20 +26,6 @@ export const dashboardController = {
     },
   },
 
-  addPoi: {
-    handler: async function (request, h) {
-      const loggedInUser = request.auth.credentials;
-      const newPoi = {
-        userid: loggedInUser._id,
-        name: request.payload.name,
-        category: request.payload.category,
-        description: request.payload.description,
-        location: request.payload.location,
-      };
-      await db.poiStore.addPoi(newPoi);
-      return h.redirect("/dashboard");
-    },
-  },
   deletePoi: {
     handler: async function (request, h) {
       const poi = await db.poiStore.getPoiById(request.params.id);

@@ -2,7 +2,8 @@
   <div class="field">
     <label class="label">Point of Interest Name</label> <input class="input" type="text" placeholder="Enter point of interest name" name="name">
   </div>
-  <div class="select" placeholder="test">
+  <label class="label">Category</label>
+  <div class="select">
     <select name="category">
       <option>Hike trail head</option>
       <option>Monument</option>
@@ -16,9 +17,46 @@
   <div class="field">
     <label class="label">Description</label> <input class="input" type="text" placeholder="test" name="description">
   </div>
+
   <div class="field">
-    <label class="label">Location</label> <input class="input" type="text" placeholder="test" name="location">
+    <label class="label">Location - Select using map</label>
+    <input type="text" id="latitude" placeholder="latitude" name="latitude" disabled>
+    <input type="text" id="longitude" placeholder="longitude" name="longitude" disabled>
   </div>
+
 
   <button class="button is-link">Add Point of Interest</button>
 </form>
+<br>
+
+<div id="map" style="width: 600px; height: 400px; position: relative; outline: none;" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+</div>
+
+<!-- https://medium.com/@nargessmi87/how-to-get-latitude-and-longitude-from-a-click-event-on-osm-3af4144b6d4b -->
+<script>
+  let mapOptions = {
+    center:[53.340, -6.273],
+    zoom:10
+  }
+
+  let map = new L.map('map' , mapOptions);
+
+  let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+  map.addLayer(layer);
+
+
+  let marker = null;
+  map.on('click', (event)=> {
+
+    if(marker !== null){
+      map.removeLayer(marker);
+    }
+
+    marker = L.marker([event.latlng.lat , event.latlng.lng]).addTo(map);
+
+    document.getElementById('latitude').value = event.latlng.lat;
+    document.getElementById('longitude').value = event.latlng.lng;
+
+  })
+
+</script>
