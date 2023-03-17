@@ -18,7 +18,7 @@ export const dashboardController = {
     handler: async function (request, h) {
       // const pois = await db.poiStore.getAllPois();
       const viewData = {
-        title: "Add of Interest Dashboard",
+        title: "Add Point of Interest Dashboard",
         // other: test,
         // pois: pois,
       };
@@ -32,8 +32,18 @@ export const dashboardController = {
       const newPoi = {
         userid: loggedInUser._id,
         name: request.payload.name,
+        category: request.payload.category,
+        description: request.payload.description,
+        location: request.payload.location,
       };
       await db.poiStore.addPoi(newPoi);
+      return h.redirect("/dashboard");
+    },
+  },
+  deletePoi: {
+    handler: async function (request, h) {
+      const poi = await db.poiStore.getPoiById(request.params.id);
+      await db.poiStore.deletePoiById(poi._id);
       return h.redirect("/dashboard");
     },
   },

@@ -32,7 +32,7 @@ async function init() {
 
   server.auth.strategy("session", "cookie", {
     cookie: {
-      name: "playtime",
+      name: "poi",
       password: "secretpasswordnotrevealedtoanyone",
       isSecure: false,
     },
