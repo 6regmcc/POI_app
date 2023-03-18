@@ -17,7 +17,7 @@ export const poiController = {
       payload: PoiSpec,
       options: { abortEarly: false },
       failAction: function (request, h, error) {
-        return h.view("poi-view", { title: "Add Playlist error", errors: error.details }).takeover().code(400);
+        return h.view("add-poi-view", { title: "Add Playlist error", errors: error.details }).takeover().code(400);
       },
     },
     handler: async function (request, h) {
