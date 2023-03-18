@@ -1,4 +1,5 @@
 import { db } from "../models/db.js";
+import { PoiSpec } from "../models/joi-schemas.js";
 
 export const poiController = {
   index: {
@@ -12,6 +13,13 @@ export const poiController = {
     },
   },
   addPoi: {
+    validate: {
+      payload: PoiSpec,
+      options: { abortEarly: false },
+      failAction: function (request, h, error) {
+        return h.view("poi-view", { title: "Add Playlist error", errors: error.details }).takeover().code(400);
+      },
+    },
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const newPoi = {
