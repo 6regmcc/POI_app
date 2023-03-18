@@ -5,6 +5,7 @@
   <label class="label">Category</label>
   <div class="select">
     <select name="category">
+      <option value="none" selected disabled hidden>Select an Option</option>
       <option>Hike trail head</option>
       <option>Monument</option>
       <option>Parking</option>
@@ -20,8 +21,8 @@
 
   <div class="field">
     <label class="label">Location - Select using map</label>
-    <input type="text" id="latitude" placeholder="latitude" name="latitude" disabled>
-    <input type="text" id="longitude" placeholder="longitude" name="longitude" disabled>
+    <input type="text" id="latitude" placeholder="latitude" name="latitude" readonly>
+    <input type="text" id="longitude" placeholder="longitude" name="longitude" readonly>
   </div>
 
 

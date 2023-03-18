@@ -4,3 +4,29 @@
   {{> list-pois}}
   <a id="add-poi" class="button" href="/dashboard/create_poi"> Add Point of Interest </a>
 </section>
+
+<div id="map" style="width: 600px; height: 400px; position: relative; outline: none;" class="leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+</div>
+
+<!-- https://medium.com/@nargessmi87/how-to-get-latitude-and-longitude-from-a-click-event-on-osm-3af4144b6d4b -->
+<script>
+  let mapOptions = {
+    center:[53.340, -6.273],
+    zoom:10
+  }
+
+  let map = new L.map('map' , mapOptions);
+
+  let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+  map.addLayer(layer);
+
+  {{#each pois}}
+  L.marker([{{latitude}}, {{longitude}}]).addTo(map).bindPopup('<b>{{name}}</b><br>{{category}}<br><a>View<a/>');
+  {{/each}}
+
+</script>
+
+
+
+
+
