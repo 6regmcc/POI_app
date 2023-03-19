@@ -4,12 +4,29 @@ import { db } from "../models/db.js";
 export const poiApi = {
   find: {
     auth: false,
-    handler: async function (request, h) {},
+    handler: async function (request, h) {
+      try {
+        const pois = await db.poiStore.getAllPois();
+        return pois;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
   },
 
   findOne: {
     auth: false,
-    async handler(request) {},
+    async handler(request) {
+      try {
+        const poi = await db.poiStore.getPoiById(request.params.id);
+        if (!poi) {
+          return Boom.notFound("No Poi with this id");
+        }
+        return poi;
+      } catch (err) {
+        return Boom.serverUnavailable("No Poi with this id");
+      }
+    },
   },
 
   create: {
@@ -32,7 +49,7 @@ export const poiApi = {
     auth: false,
     handler: async function (request, h) {
       try {
-        const poi = await db.poitore.getPoiById(request.params.id);
+        const poi = await db.poiStore.getPoiById(request.params.id);
         if (!poi) {
           return Boom.notFound("No Poi with this id");
         }
