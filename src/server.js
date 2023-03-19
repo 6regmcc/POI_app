@@ -5,6 +5,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import Cookie from "@hapi/cookie";
 import Joi from "joi";
+import Inert from "@hapi/inert";
+import HapiSwagger from "hapi-swagger";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { webRoutes } from "./web-routes.js";
 import { db } from "./models/db.js";
@@ -18,8 +20,24 @@ async function init() {
     port: 3000,
     host: "localhost",
   });
+
+  const swaggerOptions = {
+    info: {
+      title: "Poi API",
+      version: "0.1",
+    },
+  };
   await server.register(Vision);
   await server.register(Cookie);
+  await server.register(Inert);
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    },
+  ]);
   server.validator(Joi);
   server.views({
     engines: {

@@ -15,4 +15,6 @@ export const webRoutes = [
   { method: "POST", path: "/dashboard/create_poi/addpoi", config: poiController.addPoi },
   { method: "GET", path: "/dashboard/delete_poi/{id}", config: dashboardController.deletePoi },
   { method: "GET", path: "/dashboard/poi/{id}", config: poiController.index },
+
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];
